@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./desafio.css">
+    <title>Desafio</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Adivinhe o número!</h1>
+        <h2>Dica: É um número entre 1 e 10</h2>
+        <input type="text" placeholder="Seu palpite" id="palpite">
+        <button onclick="enviar()">Enviar</button>
+    
+        <div id="resultado">
+            <p></p>
+            <h1></h1>
+    
+    
+        </div>
+    </div>
+
+
+<script>
+
+function enviar() {
+            const palpite = parseInt(document.getElementById('palpite').value); 
+            const resultado = document.getElementById('resultado');
+            const numero = Math.floor(Math.random() * 10) + 1; 
+
+            
+
+            try {
+                if (palpite < 1 || palpite > 10) {
+                    throw new Error(`ERRO! Seu palpite deve estar entre 1 e 10. Seu palpite foi ${palpite}`);
+                } else {
+                    if(palpite == numero){
+                        resultado.querySelector('p').textContent = `PARABÉNS!!! Seu palpite foi ${palpite}`;
+                        resultado.querySelector('h1').textContent = `O número era ${numero}`;
+                    }else{
+                        resultado.querySelector('p').textContent = `NÃO FOI DESSA VEZ!!! Seu palpite foi ${palpite}`;
+                        resultado.querySelector('h1').textContent = `O número era ${numero}`;
+
+                    }
+                    
+                }
+            } catch (error) {
+                resultado.querySelector('p').textContent = error.message;
+            }
+        }
+</script>
+</body>
+</html>
